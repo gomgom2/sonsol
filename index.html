@@ -28,7 +28,42 @@
 			</div>
 			<div class="main-visual-inner">
 				<h1>“차별금지법”<br><span>있는 나라로</span></h1>
-				<h2>월간<br>손솔</h2>
+<div class="cover-box">
+  <!-- 실제 텍스트는 화면에서 숨기고, 스크린리더용으로만 사용 -->
+  <h2 class="cover-title">월간 손솔</h2>
+
+  <!-- 구멍 뚫린 박스를 그리는 SVG -->
+  <svg class="cover-svg" viewBox="0 0 110 120" aria-hidden="true">
+    <defs>
+      <mask id="cover-text-mask">
+        <!-- 전체 영역 흰색(=보여질 부분) -->
+        <rect x="0" y="0" width="100%" height="100%" fill="white" />
+        <!-- 글자 부분 검정(=뚫릴 부분) -->
+        <text x="50%" y="32%" text-anchor="middle"
+              dominant-baseline="middle"
+              font-size="60"
+              font-family="Presentation, sans-serif"
+              font-weight="800"
+              fill="black">
+          월간
+        </text>
+        <text x="50%" y="77%" text-anchor="middle"
+              dominant-baseline="middle"
+              font-size="60"
+              font-family="Presentation, sans-serif"
+              font-weight="800"
+              fill="black">
+          손솔
+        </text>
+      </mask>
+    </defs>
+
+    <!-- 흰 박스에 위에서 만든 마스크를 적용 = 글자 모양만 뚫림 -->
+    <rect x="0" y="0" width="100%" height="100%"
+          fill="white"
+          mask="url(#cover-text-mask)" />
+  </svg>
+</div>
 				<p>국회의원 손솔<br><span>11월 의정보고서</span></p>
 			</div>
 			<figure class="cover-logo">

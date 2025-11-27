@@ -200,3 +200,10 @@
     font-weight: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'GilbutBi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/GilbeotBI.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
