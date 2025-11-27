@@ -28,7 +28,7 @@ body {
   font-weight: 400;
   color: var(--basic-color);
   line-height: 1.6;
-  background-color: #fff;
+  background: #050505;
 }
 
 img, picture, video, canvas, svg {
