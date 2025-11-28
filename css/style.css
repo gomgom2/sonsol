@@ -28,7 +28,6 @@ body {
   font-weight: 400;
   color: var(--basic-color);
   line-height: 1.6;
-  background: #050505;
 }
 
 img, picture, video, canvas, svg {
@@ -175,4 +174,10 @@ table {
 
 @media (max-width: 768px) {
   
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;   /* 다크모드일 때만 적용 */
+  }
 }
