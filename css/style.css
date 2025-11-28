@@ -130,6 +130,13 @@ table {
   color: transparent;
   -webkit-text-fill-color: transparent;
 } */
+.main-title figure {
+  margin-bottom: 3rem;
+  width: 80%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .main-visual-inner .cover-box {
     padding: .5rem 1.2rem; 
     margin-bottom: 1rem;
