@@ -355,6 +355,19 @@ table {
   padding: 2rem 2.5rem;
 }
 
+.ad-box span {
+  display: block;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  margin-bottom: 1rem;
+  max-width: 100%;
+  margin: 1rem 2.5rem;
+  padding: 1rem 0;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, .3);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {}
 
 @media (prefers-color-scheme: dark) {
