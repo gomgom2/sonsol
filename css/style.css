@@ -71,6 +71,12 @@ h6 {
   font-weight: normal;
 }
 
+ul,
+ol,
+li {
+  list-style: none;
+}
+
 button {
   cursor: pointer;
   background-color: transparent;
@@ -287,6 +293,10 @@ table {
   position: relative;
 }
 
+.slide-item.transparent-slide {
+  background-color: transparent;
+}
+
 .slide-item-text {
   padding: 2rem 2.5rem;
   position: relative;
@@ -302,9 +312,41 @@ table {
   word-break: keep-all;
 }
 
+.slide-item-text h5 {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 700;
+  margin-bottom: .5rem;
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
 .slide-item-text p {
   font-size: clamp(1.4rem, 1.8vw, 1.8rem);
   line-height: 1.5;
+}
+
+.slide-item-text ul {
+  margin-top: 1rem;
+}
+
+.slide-item-text li {
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.slide-item-text ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.slide-item-text ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--basic-color);
 }
 
 .first-item .slide-item-text {
@@ -343,6 +385,21 @@ table {
   color: #000;
   padding: 1rem 1.2rem;
   margin-top: 0.5rem;
+}
+
+.slide-item-text.list h4 {
+  font-size: clamp(3rem, 3.5vw, 4rem);
+}
+
+.slide-item-text.list ol {
+  margin-top: 1rem;
+  padding-left: 2rem;
+}
+
+.slide-item-text.list ol li {
+  margin-bottom: 1rem;
+  list-style-type: decimal;
+  font-size: clamp(1.6rem, 2vw, 2rem);
 }
 
 .slider-pagination {
