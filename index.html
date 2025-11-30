@@ -347,10 +347,11 @@
 				</span>
 			</div>
 		</section>
-		<section class="content">
+		<section class="content month">
 			<h6>월간손솔 11월호</h6>
-			<div class="content-title month">
+			<div class="content-title">
 				<div>
+					<span>손솔의 11월 일정</span>
 					<h2>손솔의 11월 몰아보기</h2>
 				</div>
 			</div>
@@ -501,6 +502,53 @@
 				</ul>
 			</div>
 		</section>
+		<section class="content support green" id="support">
+			<div class="content-title">
+				<div>
+					<span>후원 안내</span>
+					<h2>후원으로 손솔을 키워주세요!</h2>
+					<p>
+						다가온 연말, 손솔의 든든한 편이 되어주세요.<br>
+						열정적인 의정활동으로 보답하겠습니다.
+					</p>
+				</div>
+			</div>
+			<div class="support-box">
+				<div class="support-item" id="copyAccount">
+					<h4>후원 계좌</h4>
+					<p>
+						<span id="accountNumber">농협 301-0373-2658-21</span><br>
+						<span>(국회의원 손솔 후원회)</span>
+					</p>
+				</div>
+				<div class="support-item pay">
+					<a href="https://www.give.go.kr/portal/donation/support/forInsertStep01.do?menuNo=200019"
+						target="_blank">
+						<h4>정치후원금 센터 이용</h4>
+						<p>카카오페이 등 간편결제/카드결제/실시간계좌이체</p>
+					</a>
+				</div>
+				<div class="support-item cms">
+					<a href="https://www.ihappynanum.com/Nanum/B/JBX879OKZX" target="_blank">
+						<h4>CMS를 통한 정기 후원</h4>
+						<p>매월 정기 후원을 해주시면 더 큰 힘이 됩니다.</p>
+					</a>
+				</div>
+				<div class="support-item receipt">
+					<a href="https://forms.gle/ZTwk7uMvyrM3Jbwd8" target="_blank">
+						<h4>후원금 영수증 신청</h4>
+						<p>신청폼에 맞춰 정보를 입력해주시면 영수증이 발행됩니다.</p>
+					</a>
+				</div>
+			</div>
+		</section>
+		<aside class="fixed-icon">
+			<div class="icon-sonsol" id="goSupport">
+				<figure>
+					<img src="contents/icon_sonsol.png">
+				</figure>
+			</div>
+		</aside>
 	</main>
 	<!-- Swiper JS -->
 	<script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
@@ -516,6 +564,24 @@
 				slidesPerView: 1,
 				spaceBetween: 0,
 				grabCursor: true
+			});
+		});
+	</script>
+
+	<script>
+		document.getElementById("goSupport").addEventListener("click", function () {
+			document.getElementById("support").scrollIntoView({
+				behavior: "smooth"
+			});
+		});
+	</script>
+
+	<script>
+		document.getElementById("copyAccount").addEventListener("click", function () {
+			const text = document.getElementById("accountNumber").innerText;
+
+			navigator.clipboard.writeText(text).then(() => {
+				alert("계좌번호가 복사되었습니다: " + text);
 			});
 		});
 	</script>
