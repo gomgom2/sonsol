@@ -71,12 +71,6 @@ h6 {
   font-weight: normal;
 }
 
-ul,
-ol,
-li {
-  list-style: none;
-}
-
 button {
   cursor: pointer;
   background-color: transparent;
@@ -257,13 +251,16 @@ table {
   word-break: keep-all;
 }
 
+.slide-box {
+  margin-top: 3rem;
+}
+
 .content-stitle {
-  padding: 2.5rem 2rem 1rem;
-  text-align: center;
+  padding: 0 2rem 2rem;
 }
 
 .content-stitle h3 {
-  font-size: clamp(2rem, 2.5vw, 3rem);
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
   font-family: var(--font-prese);
   font-weight: 700;
   line-height: 1.2;
@@ -272,7 +269,6 @@ table {
 
 .content-stitle h3 span {
   font-size: clamp(1.6rem, 2vw, 2rem);
-  margin-left: 0.5rem;
   font-weight: 500;
   display: block;
 }
@@ -483,10 +479,3 @@ table {
 }
 
 @media (max-width: 768px) {}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: var(--basic-color);
-    color: #fff;
-  }
-}
