@@ -86,6 +86,7 @@
 							<div class="slide-item-text">
 								<span>차별금지법 발의</span>
 								<h4>동료 의원님들께 손편지를 썼습니다</h4>
+								<h5 id="show-1">손편지 전문 보기</h5>
 							</div>
 						</div>
 						<div class="slide-item swiper-slide">
@@ -549,6 +550,28 @@
 				</figure>
 			</div>
 		</aside>
+		<aside class="fix-box">
+			<div class="letter">
+				<div class="letter-close" id="show-1-close">X</div>
+				<h2>존경하는 동료 의원님께</h2>
+				<p>진보당 국회의원 손솔입니다.</p>
+				<p>22대 국회가 반드시 차별금지법을 제정해야 한다는 절박한 마음으로, 차별금지법 발의와 제정에 함께 해 주실 것을 요청드립니다.</p>
+				<h3>차별금지법은 민주주의를 지키는 법입니다</h3>
+				<p>지난 12·3 계엄 이후 민주주의가 흔들렸을 때 우리 사회를 지켜낸 것은, 서로 다른 시민들이 광장에서 혐오가 아닌 배려와 존중의 태도로 함께한 힘이었습니다. 그러나 지금 우리
+					사회에서는 일본군 ‘위안부’ 피해자를 향한 모욕, 이주민과 외국인을 향한 조롱 등 배제와 혐오가 일상화되는 모습을 볼 수 있습니다.</p>
+				<p>이에 국무회의에서도 혐오적 내용을 담은 정당 현수막에 대한 논의가 이루어졌고, 행안부에서 금지 광고물 가이드라인도 공개하였습니다. 이재명 대통령도 국무회의에서 혐오 표현에 대해
+					‘표현의 자유를 넘어서는 명백한 범죄 행위이고 처벌이 필요하다’라는 취지로 발언하였습니다. 혐오와 차별이 우리 사회의 민주주의를 위협하고 있음을 모두가 공감하고 있습니다.</p>
+				<p>故 김대중 대통령님 때부터 시작된 차별금지법 논의가 번번이 가로막힌 결과가 바로 지금 우리가 목도하고 있는 극우 세력의 등장입니다. 더 이상 차별과 혐오의 기준 그리고 그에 대한
+					국가의 책임을 담은 차별금지법에 대한 논의를 미룰 수 없습니다. 지금이 이 논의를 시작할 적기입니다.</p>
+				<h3>국회에서 함께 토론하고 싶습니다</h3>
+				<p>차별과 혐오는 주장에 대한 반박이 아니라 존재 자체를 공격합니다. 건강한 토론의 가능성을 차단합니다. 그렇게 대한민국 민주주의는 차별이라는 단어 앞에 멈춰 섭니다. 하지만 혐오와
+					차별에 대해 이야기하지 않을수록 혐오와 차별을 막아내자는 말들은 더 위축됩니다. 때문에 더더욱 국회가 앞장서서 이 논제에 관해 이야기해야 합니다.</p>
+				<p>부디 이번 정기국회 안에, ‘우리 국회는 차별을 허용하지 않겠다’라는 최소한의 메시지라도 세상에 내놓을 수 있도록, 차별받고 배제되는 사람들에게 힘이 될 수 있도록 도와주십시오.
+				</p>
+				<p>법안에 대한 궁금증이 있으시면 편하게 연락 주시고, 공동 발의와 제정에 함께 해 주시기를 간곡히 부탁드립니다.</p>
+				<p>진심을 담아. 진보당 국회의원 손솔 드림</p>
+			</div>
+		</aside>
 	</main>
 	<!-- Swiper JS -->
 	<script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
@@ -583,6 +606,25 @@
 			navigator.clipboard.writeText(text).then(() => {
 				alert("계좌번호가 복사되었습니다: " + text);
 			});
+		});
+	</script>
+
+	<script>
+		// 손편지 열기/닫기
+		document.addEventListener("DOMContentLoaded", function () {
+			const openBtn = document.getElementById("show-1");        // "손편지 보기"
+			const closeBtn = document.getElementById("show-1-close"); // X 버튼
+			const letterBox = document.querySelector(".fix-box");     // aside 전체
+
+			if (openBtn && closeBtn && letterBox) {
+				openBtn.addEventListener("click", function () {
+					letterBox.classList.add("is-open");
+				});
+
+				closeBtn.addEventListener("click", function () {
+					letterBox.classList.remove("is-open");
+				});
+			}
 		});
 	</script>
 
