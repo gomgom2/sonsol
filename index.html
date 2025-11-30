@@ -285,8 +285,10 @@
 		</section>
 		<section class="content black">
 			<div class="content-title">
-				<span>영상으로 보는 11월</span>
-				<h2>손솔, 영상으로 만나요!</h2>
+				<div>
+					<span>영상으로 보는 11월</span>
+					<h2>손솔, 영상으로 만나요!</h2>
+				</div>
 			</div>
 			<div class="video-box dual">
 				<div>
@@ -347,11 +349,13 @@
 		</section>
 		<section class="content">
 			<h6>월간손솔 11월호</h6>
-			<div class="content-title">
-				<h2>손솔의 11월 몰아보기</h2>
+			<div class="content-title month">
+				<div>
+					<h2>손솔의 11월 몰아보기</h2>
+				</div>
 			</div>
 			<div class="slider">
-				<div class="swiper mySwiper">
+				<div class="slide-container slider-4">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide"><img src="contents/2511_slide_1.jpg" /></div>
 						<div class="swiper-slide"><img src="contents/2511_slide_2.jpg" /></div>
@@ -364,10 +368,10 @@
 						<div class="swiper-slide"><img src="contents/2511_slide_9.jpg" /></div>
 					</div>
 					<!-- 하단 페이지네이션 -->
-					<div class="swiper-pagination"></div>
+					<div class="slider-pagination"></div>
 				</div>
 			</div>
-			<div class="monthly-list">
+			<div class="month-list">
 				<ul>
 					<li>
 						<span class="date">11.4</span>
@@ -501,28 +505,6 @@
 	<!-- Swiper JS -->
 	<script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
 	<script>
-		const swiper = new Swiper('.mySwiper', {
-			loop: true,
-			speed: 500,
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true,
-				dynamicBullets: true
-			},
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-			// 드래그/스와이프 가능
-			grabCursor: true,
-			// 반응형 예시 (원하면 슬라이드 여러 개 보이도록 변경 가능)
-			slidesPerView: 1,
-			spaceBetween: 0,
-			breakpoints: {
-				768: { slidesPerView: 1 },
-				1024: { slidesPerView: 1 }
-			}
-		});
 		document.querySelectorAll('.slide-container').forEach((container) => {
 			new Swiper(container, {
 				loop: false,
