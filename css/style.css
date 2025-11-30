@@ -2,9 +2,9 @@
 
 :root {
   --basic-color: #1d1d1f;
-  --border-color-1: #1d1d1f;
+  --border-color-1: #000;
   --border-color-2: #1d1d1f;
-  --support-color: #ffd100;
+  --theme-color: #f9c270;
   --font-main: 'Pretendard', sans-serif;
   --font-paper: 'Paperozi', sans-serif;
   --font-prese: 'Presentation', sans-serif;
@@ -14,7 +14,9 @@ html {
   font-size: 62.5%;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -24,19 +26,27 @@ html {
 
 body {
   font-family: var(--font-main);
-  font-size: 1.6rem; /* = 16px */
+  font-size: 1.6rem;
+  /* = 16px */
   font-weight: 400;
   color: var(--basic-color);
   line-height: 1.6;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   height: auto;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
   color: inherit;
   background: none;
@@ -44,16 +54,26 @@ input, button, textarea, select {
   outline: none;
 }
 
-a, a:focus, a:active, a:hover {
+a,
+a:focus,
+a:active,
+a:hover {
   text-decoration: none;
   color: inherit;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: normal;
 }
 
-ul, ol, li {
+ul,
+ol,
+li {
   list-style: none;
 }
 
@@ -82,6 +102,7 @@ table {
   height: 100vh;
   overflow: hidden;
 }
+
 .main-visual-bg {
   position: absolute;
   top: 0;
@@ -92,12 +113,14 @@ table {
   object-fit: cover;
   background-color: black;
 }
+
 .main-visual-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 1;
 }
+
 .main-visual-inner {
   position: absolute;
   top: 50%;
@@ -112,30 +135,7 @@ table {
   color: white;
   font-family: var(--font-prese);
 }
-/* .main-visual-inner h1 {
-  font-size: clamp(6rem, 10vw, 8rem);
-  font-family: GilbutBi;
-  font-weight: normal;
-  letter-spacing: -.05em;
-  line-height: 1;
-  text-align: center;
-  margin-bottom: 3rem;
 
-  background: linear-gradient(
-    90deg,
-    #ff0000,
-    #ff7a00,
-    #ffe600,
-    #00ff00,
-    #00c8ff,
-    #0400ff,
-    #b800ff
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-} */
 .main-title figure {
   margin-bottom: 3rem;
   width: 80%;
@@ -143,13 +143,15 @@ table {
   left: 50%;
   transform: translateX(-50%);
 }
+
 .main-visual-inner .cover-box {
-    padding: .5rem 1.2rem; 
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: .5rem 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .cover-title {
   position: absolute;
   width: 1px;
@@ -160,32 +162,87 @@ table {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
 .cover-svg {
   display: block;
-  width: clamp(7rem, 15vw, 15rem);   /* 글자 크기에 맞게 조절 */
+  width: clamp(7rem, 15vw, 15rem);
   height: auto;
 }
+
 .main-visual-inner p {
   font-size: clamp(1.8rem, 2.5vw, 4rem);
   margin-bottom: 0.8rem;
   text-align: center;
   line-height: 1.2;
 }
+
 .cover-logo {
-    width: 5rem;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    transform: translateX(-2rem) translateY(-2rem);
-    z-index: 1;
+  width: 5rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateX(-2rem) translateY(-2rem);
+  z-index: 1;
 }
 
-@media (max-width: 768px) {
-  
+section.content {
+  /* border-left: 1px solid var(--border-color-1);
+  border-right: 1px solid var(--border-color-1); */
 }
+
+.content-title {
+  background-color: var(--border-color-1);
+  color: #fff;
+  padding: 4rem 0 4.5rem;
+}
+
+.content-title div {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.content-title span {
+  display: block;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.content-title h2 {
+  font-family: var(--font-paper);
+  font-size: clamp(3rem, 4vw, 5rem);
+  line-height: 1;
+}
+
+.content-stitle {
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.content-stitle h3 {
+  font-size: clamp(2rem, 2.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.content-stitle h3 span {
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  margin-left: 0.5rem;
+  font-weight: 500;
+  display: block;
+}
+
+.slide-container {
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+@media (max-width: 768px) {}
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: #000;   /* 다크모드일 때만 적용 */
+    background: var(--basic-color);
+    color: #fff;
   }
 }
