@@ -185,11 +185,6 @@ table {
   z-index: 1;
 }
 
-section.content {
-  /* border-left: 1px solid var(--border-color-1);
-  border-right: 1px solid var(--border-color-1); */
-}
-
 .content-title {
   background-color: var(--border-color-1);
   color: #fff;
