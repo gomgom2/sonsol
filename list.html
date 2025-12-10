@@ -15,7 +15,63 @@
     <!-- <link rel="shortcut icon" href="img/favicon.ico" /> -->
     <link rel="stylesheet" href="css/style.css?v=2025" />
     <style>
+        .post-list {
+            list-style: none;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
 
+        .content-title {
+            padding: 2rem 2rem 0 2rem
+        }
+
+        .content-title h1 {
+            font-size: clamp(3rem, 4vw, 5rem);
+            font-family: var(--font-prese);
+            font-weight: 700;
+            line-height: 1.2;
+            word-break: keep-all;
+            padding-top: 5.5rem;
+            position: relative;
+        }
+
+        .content-title h1::before {
+            content: "";
+            display: block;
+            width: 5rem;
+            height: 5rem;
+            background-image: url(https://sonsol.kr/2511/contents/icon_month.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .post-thumbnail {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-elevation-high);
+            margin-bottom: 0.5rem;
+        }
+
+        .post-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
     </style>
 
 </head>
@@ -23,14 +79,12 @@
 <body>
     <main class="main-page">
         <section class="content">
-            <div class="content-header">
-                <h1 class="content-title">월간 손솔 전체보기</h1>
+            <div class="content-title">
+                <h1>월간 손솔 전체보기</h1>
                 <p class="content-subtitle">손솔 국회의원의 월간 웹진 입니다</p>
             </div>
             <div class="content-body">
                 <ul class="post-list">
-                    <!-- 게시물 리스트 시작 -->
-                    <!-- 게시물 아이템 예시 시작 -->
                     <li class="post-item">
                         <a href="http://sonsol.kr/2510/" class="post-link" target="_blank">
                             <div class="post-thumbnail">
@@ -41,8 +95,16 @@
                             </div>
                         </a>
                     </li>
-                    <!-- 게시물 아이템 예시 끝 -->
-                    <!-- 게시물 리스트 끝 -->
+                    <li class="post-item">
+                        <a href="http://sonsol.kr/2511/" class="post-link" target="_blank">
+                            <div class="post-thumbnail">
+                                <img src="https://sonsol.kr/2511/contents/cover.jpg" alt="25년 11월호 표지" />
+                            </div>
+                            <div class="post-info">
+                                <h2 class="post-title">2025년 11월호</h2>
+                            </div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </section>
