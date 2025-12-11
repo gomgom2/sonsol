@@ -261,6 +261,16 @@ table {
   color: #fff
 }
 
+.content.xmas-red {
+  background-color: #b71c1c;
+  color: #fff
+}
+
+.content.xmas-green {
+  background-color: #008000;
+  color: #fff
+}
+
 .content.black+.content.black {
   padding-top: 0;
   margin-top: -3rem;
