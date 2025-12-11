@@ -395,9 +395,39 @@ table {
   word-break: keep-all;
 }
 
+.slide-item-text h5.go-youtube {
+  margin-top: 1rem;
+}
+
+.slide-item-text h5.go-youtube a {
+  background-color: rgba(0, 0, 0, .1);
+  color: #000;
+  padding: 0.3rem 0.8rem 0.3rem 3rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.slide-item-text h5.go-youtube a::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1.05rem;
+  background-image: url(../images/icon_youtube.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .slide-item-text p {
   font-size: clamp(1.4rem, 1.8vw, 1.8rem);
   line-height: 1.5;
+}
+
+.slide-item-text p span {
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
 }
 
 .slide-item-text ul {
