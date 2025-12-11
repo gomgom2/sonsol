@@ -15,25 +15,20 @@
     <!-- <link rel="shortcut icon" href="img/favicon.ico" /> -->
     <link rel="stylesheet" href="css/style.css?v=2025" />
     <style>
-        /* .list {
-            background-image: url(https://sonsol.kr/2511/images/paper_bg.jpg);
-            background-size: 100% auto;
-            background-repeat: repeat-y;
-        } */
-
         .post-list {
             list-style: none;
+            margin-top: 3rem;
             padding: 2rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
 
-        .content-title {
+        .list .content-title {
             padding: 2rem 2rem 0 2rem
         }
 
-        .content-title h1 {
+        .list .content-title h1 {
             font-size: clamp(3rem, 4vw, 5rem);
             font-family: var(--font-prese);
             font-weight: 700;
@@ -43,7 +38,7 @@
             position: relative;
         }
 
-        .content-title h1::before {
+        .list .content-title h1::before {
             content: "";
             display: block;
             width: 5rem;

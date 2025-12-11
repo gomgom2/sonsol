@@ -114,18 +114,33 @@ table {
   background-color: black;
 }
 
-.main-visual-bg video {
+.main-visual-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0) 90%);
+  z-index: 2;
+}
+
+.main-visual-bg video,
+.main-visual-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 1;
+  z-index: 1;
 }
 
 .main-visual-inner {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-40%);
+  transform: translateX(-50%) translateY(25%);
   width: 100%;
   height: auto;
   display: flex;
@@ -134,6 +149,43 @@ table {
   align-items: center;
   color: white;
   font-family: var(--font-prese);
+}
+
+.main-visual-inner h1 {
+  font-size: clamp(5.5rem, 6vw, 6rem);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  word-break: keep-all;
+  margin-bottom: 1rem;
+  font-family: OngleipParkDahyeon, var(--font-prese);
+  text-shadow:
+    /* 1. 흰색 외곽선 효과 (4방향 1px씩) */
+    1px 1px 0 #FFFFFF,
+    -1px 1px 0 #FFFFFF,
+    1px -1px 0 #FFFFFF,
+    -1px -1px 0 #FFFFFF,
+
+    /* 2. 성탄절 느낌의 빛나는 효과 (선택 사항, 유지) */
+    0 0 5px #FFFFFF,
+    /* 흰색 빛 번짐 (눈 효과) */
+    0 0 15px #FFD700,
+    /* 금색 빛 번짐 */
+
+    /* 3. 기본적인 깊이 그림자 (가장 뒤에 위치) */
+    3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.main-visual-inner h1 span.xmas-red {
+  color: #FF0000;
+  display: block;
+  margin-bottom: -0.1rem;
+  /* 밝은 크리스마스 레드 */
+}
+
+.main-visual-inner h1 span.xmas-green {
+  color: #008000;
+  /* 중간톤 크리스마스 그린 */
 }
 
 .main-title figure {
@@ -152,7 +204,7 @@ table {
   align-items: center;
 }
 
-.cover-title {
+.no-show {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -362,14 +414,14 @@ table {
   color: var(--basic-color);
 }
 
-.first-item .slide-item-text {
+.full-item .slide-item-text {
   position: absolute;
   bottom: 7%;
   left: 5%;
   width: 90%;
 }
 
-.first-item span {
+.full-item span {
   display: inline-block;
   font-size: clamp(1.5rem, 1.8vw, 1.8rem);
   font-family: var(--font-prese);
@@ -379,19 +431,31 @@ table {
   margin-bottom: 0.5rem;
 }
 
-.first-item h4 {
+.full-item h4 {
+  margin-bottom: 1rem;
+}
+
+.full-item h4 span {
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 700;
   font-family: var(--font-prese);
-  background-color: #9cfad4;
-  color: #000;
-  width: fit-content;
-  max-width: 100%;
+  line-height: 1.9;
   padding: 0.5rem 1rem;
-  z-index: 1;
+  color: #fff;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-.first-item h5 {
+.full-item h4 span.red {
+  background-color: #b71c1c;
+}
+
+.full-item h4 span.green {
+  background-color: #1b5e20;
+}
+
+.full-item h5 {
   font-size: clamp(1.4rem, 2vw, 2rem);
   font-weight: 700;
   margin-top: 0.5rem;
@@ -404,7 +468,7 @@ table {
   max-width: 100%;
 }
 
-.first-item p {
+.full-item p {
   font-size: clamp(1.4rem, 1.8vw, 1.8rem);
   line-height: 1.5;
   background-color: #fff;

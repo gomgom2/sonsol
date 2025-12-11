@@ -188,7 +188,8 @@
 }
 
 @font-face {
-    font-family: 'YeogiOttaeJalnan'; /*여기어때체*/
+    font-family: 'YeogiOttaeJalnan';
+    /*여기어때체*/
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
     font-weight: normal;
     font-display: swap;
@@ -204,6 +205,13 @@
 @font-face {
     font-family: 'GilbutBi';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/GilbeotBI.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OngleipParkDahyeon';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_ParkDaHyun.woff2') format('woff2');
     font-weight: normal;
     font-display: swap;
 }
