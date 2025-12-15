@@ -692,10 +692,22 @@ table {
   font-size: 1rem;
 }
 
+.month-list li span.month-desc {
+  line-height: 1.1;
+  display: block;
+  padding: .5rem 0;
+}
+
 .month-list li div {
   line-height: 1.3;
   font-weight: 500;
   word-break: keep-all;
+}
+
+.month-list li div.month-bold {
+  font-size: clamp(1.8rem, 2vw, 2rem);
+  font-weight: 700;
+  font-family: var(--font-prese);
 }
 
 .month-list li div span.br-gap {
