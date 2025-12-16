@@ -21,7 +21,10 @@
 	<main class="main-page">
 		<section class="main-visual">
 			<div class="main-visual-bg">
-				<img src="contents/cover.jpg" alt="손솔 국회의원 월간 손솔 12월호 커버 이미지" />
+				<video autoplay="" loop="" preload="" muted="" playsinline="" poster="" height="100%" id="video1"
+					class="movie">
+					<source src="contents/main_video.mov" type="video/mp4">
+				</video>
 			</div>
 			<div class="main-visual-inner">
 				<h1>
@@ -733,45 +736,6 @@
 					letterBox.classList.remove("is-open");
 				});
 			}
-		});
-	</script>
-
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			// 눈이 내릴 구역 지정 (.main-visual 클래스)
-			const visualSection = document.querySelector('.main-visual');
-
-			function createSnow() {
-				if (!visualSection) return;
-
-				const snowflake = document.createElement('div');
-				snowflake.classList.add('snowflake');
-
-				// 눈송이 크기 (2px ~ 15px)
-				const size = Math.random() * 15 + 3 + 'px';
-				snowflake.style.width = size;
-				snowflake.style.height = size;
-
-				// 가로 위치 (0% ~ 100%)
-				snowflake.style.left = Math.random() * 100 + '%';
-
-				// 떨어지는 속도 (10초 ~ 15초)
-				const duration = Math.random() * 15 + 10 + 's';
-				snowflake.style.animationDuration = duration;
-
-				// 투명도
-				snowflake.style.opacity = Math.random() * 0.3 + 0.05;
-
-				visualSection.appendChild(snowflake);
-
-				// 7초 뒤에 삭제 (메모리 관리)
-				setTimeout(() => {
-					snowflake.remove();
-				}, 18000);
-			}
-
-			// 0.1초마다 눈송이 생성
-			setInterval(createSnow, 200);
 		});
 	</script>
 
