@@ -245,13 +245,33 @@ table {
   color: #fff
 }
 
-.content.xmas-red {
-  background-color: #b71c1c;
+.content.pride-red {
+  background-color: #e50000;
   color: #fff
 }
 
-.content.xmas-green {
-  background-color: #008000;
+.content.pride-orange {
+  background-color: #ff8d00;
+  color: #fff
+}
+
+.content.pride-yellow {
+  background-color: #ffee00;
+  color: #000
+}
+
+.content.pride-green {
+  background-color: #028121;
+  color: #fff
+}
+
+.content.pride-blue {
+  background-color: #004cff;
+  color: #fff
+}
+
+.content.pride-purple {
+  background-color: #770088;
   color: #fff
 }
 
@@ -379,11 +399,11 @@ table {
   word-break: keep-all;
 }
 
-.slide-item-text h5.go-youtube {
-  margin-top: 1rem;
+.slide-item-text h5.go-btn {
+  margin-top: 2rem;
 }
 
-.slide-item-text h5.go-youtube a {
+.slide-item-text h5.go-btn a {
   background-color: rgba(0, 0, 0, .1);
   color: #000;
   padding: 0.3rem 0.8rem 0.3rem 3rem;
@@ -391,7 +411,7 @@ table {
   position: relative;
 }
 
-.slide-item-text h5.go-youtube a::before {
+.slide-item-text h5.go-btn a::before {
   content: "";
   display: block;
   width: 1.5rem;
@@ -403,6 +423,14 @@ table {
   left: 0.8rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.slide-item-text h5.go-btn.go-pdf a::before {
+  background-image: url(../images/icon_pdf.png);
+}
+
+.slide-item-text h5.go-btn.go-link a::before {
+  background-image: url(../images/icon_link.png);
 }
 
 .slide-item-text p {
@@ -466,6 +494,12 @@ table {
   margin-bottom: 1rem;
 }
 
+.full-item h4.big-text {
+  font-size: clamp(3rem, 4vw, 4rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+  color: #fff
+}
+
 .full-item h4 span {
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 700;
@@ -486,6 +520,10 @@ table {
   background-color: #1b5e20;
 }
 
+.full-item h4 span.blue {
+  background-color: #0071c6;
+}
+
 .full-item h5 {
   font-size: clamp(1.4rem, 2vw, 2rem);
   font-weight: 700;
@@ -497,6 +535,7 @@ table {
   padding: 0.5rem 1rem;
   width: fit-content;
   max-width: 100%;
+  border: 1px solid #000;
 }
 
 .full-item p {
@@ -506,6 +545,7 @@ table {
   color: #000;
   padding: 1rem 1.2rem;
   margin-top: 0.5rem;
+  border: 1px solid #000
 }
 
 .full-item h6 {
@@ -584,6 +624,38 @@ table {
 
 .video-box+.video-box {
   padding-top: 0;
+}
+
+.link-box {
+  margin-top: 1rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.link-item {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.link-item a {
+  color: #000;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.link-item h4 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  word-break: keep-all;
 }
 
 .sns-btn {
