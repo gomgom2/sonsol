@@ -438,8 +438,20 @@ table {
   line-height: 1.5;
 }
 
+.slide-item-text p.normal-box {
+  margin-top: 1rem;
+  border: 1px solid var(--basic-color);
+  padding: 1rem 1.2rem;
+}
+
 .slide-item-text p span {
   font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+}
+
+.slide-item-text p span.label {
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  font-weight: 600;
+  margin-right: 0.5rem;
 }
 
 .slide-item-text ul {
@@ -571,6 +583,18 @@ table {
   margin-bottom: 1rem;
   list-style-type: decimal;
   font-size: clamp(1.6rem, 2vw, 2rem);
+}
+
+.slide-item .dual-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2.5rem 2.5rem 0;
+}
+
+.slide-item .dual-image figure {
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .slider-pagination {
