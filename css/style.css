@@ -626,6 +626,24 @@ table {
   cursor: pointer;
 }
 
+.ad-box a {
+  display: block;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  background-color: #fff;
+  color: #000;
+  font-size: clamp(2rem, 2vw, 2.5rem);
+  font-weight: 600;
+  font-family: var(--font-prese);
+  line-height: 1.1;
+  text-align: center;
+  word-break: keep-all;
+  padding: 1rem 0;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+
 .video-box {
   padding: 2rem 2rem;
 }
