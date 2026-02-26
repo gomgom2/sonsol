@@ -139,7 +139,7 @@ table {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(25%);
+  transform: translateX(-50%) translateY(15%);
   width: 100%;
   height: auto;
   display: flex;
@@ -370,6 +370,10 @@ table {
   overflow: hidden;
   background-color: #fff;
   position: relative;
+}
+
+.short-in .slide-item {
+  aspect-ratio: 1 / 1.78;
 }
 
 .slide-item.transparent-slide {
@@ -644,13 +648,13 @@ table {
 }
 
 
-.video-box {
-  padding: 2rem 2rem;
-}
-
 .video-box iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
+}
+
+.video-box.shorts iframe {
+  aspect-ratio: 1 / 1.78;
 }
 
 .video-box.dual {
