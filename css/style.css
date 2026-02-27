@@ -122,7 +122,7 @@ table {
   width: 100%;
   height: 100%;
   background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.8) 0%,
       rgba(0, 0, 0, 0) 90%);
   z-index: 2;
 }
@@ -139,7 +139,7 @@ table {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(15%);
+  transform: translateX(-50%) translateY(5%);
   width: 100%;
   height: auto;
   display: flex;
@@ -151,13 +151,15 @@ table {
 }
 
 .main-visual-inner h1 {
-  font-size: clamp(5.5rem, 6vw, 6rem);
+  /* font-size: clamp(5.5rem, 6vw, 6rem); */
+  font-size: clamp(3.5rem, 4vw, 4rem);
   font-weight: 700;
   text-align: center;
-  line-height: 1;
+  line-height: 1.1;
   word-break: keep-all;
   margin-bottom: 1rem;
   font-family: var(--font-prese);
+  text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .main-visual-inner h1 span.xmas-red {
@@ -599,6 +601,19 @@ table {
 .slide-item .dual-image figure {
   border-radius: 1rem;
   overflow: hidden;
+}
+
+.slide-item .center-image {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.slide-item .center-image.mgt {
+  margin-top: 2rem;
+}
+
+.slide-item .center-image figcaption {
+  line-height: 1.2;
 }
 
 .slider-pagination {
