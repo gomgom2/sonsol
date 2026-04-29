@@ -83,10 +83,14 @@
 							</p>
 						</div>
 					</div>
-					<div class="slide-item swiper-slide">
+					<div class="slide-item swiper-slide slide-video">
 						<figure>
 							<video src="contents/2-2.mov" muted playsinline></video>
 						</figure>
+						<button class="mute-btn">
+							<img src="images/icon_mute.png" alt="음소거" class="icon-mute">
+							<img src="images/icon_sound.png" alt="소리켜기" class="icon-sound">
+						</button>
 					</div>
 					<div class="slide-item swiper-slide">
 						<figure>
@@ -128,15 +132,23 @@
 							</p>
 						</div>
 					</div>
-					<div class="slide-item swiper-slide">
+					<div class="slide-item swiper-slide slide-video">
 						<figure>
 							<video src="contents/3-2.mov" muted playsinline></video>
 						</figure>
+						<button class="mute-btn">
+							<img src="images/icon_mute.png" alt="음소거" class="icon-mute">
+							<img src="images/icon_sound.png" alt="소리켜기" class="icon-sound">
+						</button>
 					</div>
-					<div class="slide-item swiper-slide">
+					<div class="slide-item swiper-slide slide-video">
 						<figure>
 							<video src="contents/3-3.mov" muted playsinline></video>
 						</figure>
+						<button class="mute-btn">
+							<img src="images/icon_mute.png" alt="음소거" class="icon-mute">
+							<img src="images/icon_sound.png" alt="소리켜기" class="icon-sound">
+						</button>
 					</div>
 				</div>
 				<div class="slider-pagination"></div>
@@ -167,14 +179,13 @@
 						const activeSlide = this.slides[this.activeIndex];
 						const video = activeSlide.querySelector('video');
 						if (video) {
-							// video.muted = true;
+							video.muted = isMuted;
 							video.play();
 						}
 					}
 				}
 			});
 
-			// 슬라이더가 뷰포트에 보이면 재생, 벗어나면 정지
 			const observer = new IntersectionObserver((entries) => {
 				entries.forEach(entry => {
 					const activeSlide = swiper.slides[swiper.activeIndex];
@@ -187,9 +198,29 @@
 						video.pause();
 					}
 				});
-			}, { threshold: 0.3 }); // 30% 이상 보일 때 재생
+			}, { threshold: 0.3 });
 
 			observer.observe(container);
+		});
+
+		// 음소거 토글
+		let isMuted = true;
+
+		document.querySelectorAll('.slide-container').forEach((container) => {
+			container.addEventListener('click', function (e) {
+				const btn = e.target.closest('.mute-btn');
+				if (!btn) return;
+
+				isMuted = !isMuted;
+
+				document.querySelectorAll('video').forEach(v => {
+					v.muted = isMuted;
+				});
+
+				document.querySelectorAll('.mute-btn').forEach(b => {
+					b.classList.toggle('is-sound', !isMuted);
+				});
+			});
 		});
 	</script>
 </body>
