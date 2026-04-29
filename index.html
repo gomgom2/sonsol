@@ -58,17 +58,140 @@
 				<img src="images/logo-wh.png">
 			</figure>
 		</section>
-		<section class="content content-1">
+		<section class="content content-2">
 			<div class="content-head">
 				<div class="profile">
-					<img src="contents/profile-1.jpg">
+					<img src="contents/profile-2.jpg">
 				</div>
 				<div class="content-stitle">
 					<h3>대장동 국정조사<span>4.16</span></h3>
 				</div>
 			</div>
+			<div class="slide-container">
+				<div class="swiper-wrapper">
+					<div class="slide-item swiper-slide slide-cover">
+						<figure>
+							<img src="contents/2-1.jpg" />
+						</figure>
+						<div class="slide-item-text">
+							<h4>
+								국내 일제 강제동원 현장 조사 사업이 최초로 시작됩니다
+							</h4>
+							<p>
+								제가 지난 국정감사에서 “일본의 사죄와 배상을 촉구하면서, 정작 국내 강제동원 현장을 보존하지 않는 것은 심각한 직무유기”라고 해결을 요청한 사안이,
+								올해 유산청의 사업계획에 반영된 것입니다.
+							</p>
+						</div>
+					</div>
+					<div class="slide-item swiper-slide">
+						<figure>
+							<video src="contents/2-2.mov" muted playsinline></video>
+						</figure>
+					</div>
+					<div class="slide-item swiper-slide">
+						<figure>
+							<img src="contents/2-3.jpg" alt="" />
+						</figure>
+						<div class="slide-item-text">
+							<p>
+								윤석열 정권의 검찰은 4800명 이상의 건설노조 조합원들을 검거하고 수백명을 구속하면서 정당한 노조활동을 탄압했습니다. 양회동 열사는 이 건폭몰이를 멈춰야
+								한다며 안타까운 분신을 선택하셨습니다. 그런데 춘천지검 강릉지청 CCTV영상이 유출되더니 조선일보는 단독으로 분신방조의혹이라는 파렴치한 제목을 달아
+								보도합니다. 사람 두번 죽이는 검찰과 언론의 유착관계, 끝까지 쫓겠습니다.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="slider-pagination"></div>
+			</div>
+		</section>
+		<section class="content content-3">
+			<div class="content-head">
+				<div class="profile">
+					<img src="contents/profile-3.jpg">
+				</div>
+				<div class="content-stitle">
+					<h3>쌍방울 대북송금 국정조사<span>4.3</span></h3>
+				</div>
+			</div>
+			<div class="slide-container">
+				<div class="swiper-wrapper">
+					<div class="slide-item swiper-slide slide-cover">
+						<figure>
+							<img src="contents/3-1.jpg" />
+						</figure>
+						<div class="slide-item-text">
+							<h4>
+								교도소에 술 반입, 교도관들은 항의했다
+							</h4>
+							<p>
+								쌍방울 대북송금 사건의 핵심, 이른바 연어 술파티 의혹. 박상용 검사가 거짓말로 잡아떼자 교도관들에게 진실을 물어봤습니다.
+							</p>
+						</div>
+					</div>
+					<div class="slide-item swiper-slide">
+						<figure>
+							<video src="contents/3-2.mov" muted playsinline></video>
+						</figure>
+					</div>
+					<div class="slide-item swiper-slide">
+						<figure>
+							<video src="contents/3-3.mov" muted playsinline></video>
+						</figure>
+					</div>
+				</div>
+				<div class="slider-pagination"></div>
+			</div>
 		</section>
 	</main>
+	<!-- Swiper JS -->
+	<script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+	<script>
+		document.querySelectorAll('.slide-container').forEach((container) => {
+			const swiper = new Swiper(container, {
+				loop: false,
+				speed: 500,
+				pagination: {
+					el: container.querySelector('.slider-pagination'),
+					clickable: true,
+				},
+				slidesPerView: 1,
+				spaceBetween: 0,
+				grabCursor: true,
+				on: {
+					slideChangeTransitionEnd: function () {
+						container.querySelectorAll('video').forEach(v => {
+							v.pause();
+							v.currentTime = 0;
+						});
+
+						const activeSlide = this.slides[this.activeIndex];
+						const video = activeSlide.querySelector('video');
+						if (video) {
+							// video.muted = true;
+							video.play();
+						}
+					}
+				}
+			});
+
+			// 슬라이더가 뷰포트에 보이면 재생, 벗어나면 정지
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					const activeSlide = swiper.slides[swiper.activeIndex];
+					const video = activeSlide?.querySelector('video');
+					if (!video) return;
+
+					if (entry.isIntersecting) {
+						video.play();
+					} else {
+						video.pause();
+					}
+				});
+			}, { threshold: 0.3 }); // 30% 이상 보일 때 재생
+
+			observer.observe(container);
+		});
+	</script>
 </body>
 
 </html>
