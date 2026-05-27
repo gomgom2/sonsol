@@ -911,6 +911,19 @@
 				b.classList.toggle('is-sound', !isMuted);
 			});
 		});
+
+		document.getElementById("goSupport").addEventListener("click", function () {
+			document.getElementById("support").scrollIntoView({
+				behavior: "smooth"
+			});
+		});
+
+		document.getElementById("copyAccount").addEventListener("click", function () {
+			const text = document.getElementById("accountNumber").innerText;
+			navigator.clipboard.writeText(text).then(() => {
+				alert("계좌번호가 복사되었습니다: " + text);
+			});
+		});
 	</script>
 </body>
 
