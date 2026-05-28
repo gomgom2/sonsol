@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>월간손솔 원고 접수</title>
+	<link rel="stylesheet" href="css/font.css">
+	<style>
+		:root {
+			--ink: #1d1d1f;
+			--muted: #6a717a;
+			--line: #d9dde3;
+			--line-strong: #aeb6c2;
+			--surface: #fff;
+			--surface-alt: #f5f6f8;
+			--accent: #e50000;
+			--accent-dark: #b80000;
+			--focus: #004cff;
+			--good: #028121;
+			--shadow: 0 10px 30px rgba(0, 0, 0, .08);
+			--radius: 8px;
+			--font: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+		}
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: #eef1f5;
+			font-family: var(--font);
+			line-height: 1.5;
+		}
+
+		button,
+		input,
+		textarea,
+		select {
+			font: inherit;
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		.shell {
+			display: grid;
+			grid-template-columns: 18rem minmax(0, 1fr);
+			min-height: 100vh;
+		}
+
+		.sidebar {
+			position: sticky;
+			top: 0;
+			height: 100vh;
+			padding: 1.25rem;
+			color: #fff;
+			background: #111;
+			overflow-y: auto;
+		}
+
+		.brand {
+			margin-bottom: 2rem;
+		}
+
+		.brand h1 {
+			margin: 0;
+			font-size: 1.35rem;
+			font-weight: 800;
+		}
+
+		.brand p {
+			margin: .35rem 0 0;
+			color: rgba(255, 255, 255, .68);
+			font-size: .9rem;
+		}
+
+		.nav {
+			display: grid;
+			gap: .35rem;
+		}
+
+		.nav a {
+			display: block;
+			padding: .65rem .75rem;
+			border-radius: var(--radius);
+			color: rgba(255, 255, 255, .78);
+			text-decoration: none;
+		}
+
+		.nav a:hover,
+		.nav a:focus-visible {
+			background: rgba(255, 255, 255, .1);
+			color: #fff;
+			outline: none;
+		}
+
+		.main {
+			padding: 1.25rem;
+		}
+
+		.topbar {
+			position: sticky;
+			top: 0;
+			z-index: 20;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1rem;
+			padding: .9rem 1rem;
+			margin-bottom: 1.25rem;
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			background: rgba(255, 255, 255, .92);
+			box-shadow: var(--shadow);
+			backdrop-filter: blur(10px);
+		}
+
+		.topbar strong {
+			font-size: 1rem;
+		}
+
+		.status {
+			color: var(--muted);
+			font-size: .9rem;
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: .5rem;
+			justify-content: flex-end;
+		}
+
+		.icon-btn,
+		.text-btn {
+			min-height: 2.45rem;
+			border: 1px solid var(--line-strong);
+			border-radius: var(--radius);
+			background: #fff;
+			color: var(--ink);
+		}
+
+		.icon-btn {
+			width: 2.45rem;
+			font-weight: 800;
+		}
+
+		.text-btn {
+			padding: 0 .85rem;
+			font-weight: 700;
+		}
+
+		.primary {
+			border-color: var(--accent);
+			background: var(--accent);
+			color: #fff;
+		}
+
+		.primary:hover {
+			background: var(--accent-dark);
+		}
+
+		.danger {
+			border-color: #d23a3a;
+			color: #b80000;
+		}
+
+		.icon-btn:hover,
+		.text-btn:hover,
+		.icon-btn:focus-visible,
+		.text-btn:focus-visible {
+			border-color: var(--focus);
+			outline: none;
+		}
+
+		.form-grid {
+			display: grid;
+			gap: 1rem;
+			max-width: 72rem;
+		}
+
+		.panel {
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			background: var(--surface);
+			box-shadow: 0 4px 18px rgba(0, 0, 0, .04);
+			overflow: hidden;
+		}
+
+		.panel-head {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1rem;
+			padding: 1rem;
+			border-bottom: 1px solid var(--line);
+			background: #fafbfc;
+		}
+
+		.panel-head h2,
+		.panel-head h3 {
+			margin: 0;
+			font-size: 1.05rem;
+			font-weight: 800;
+		}
+
+		.panel-body {
+			padding: 1rem;
+		}
+
+		.field-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: .9rem;
+		}
+
+		.field-grid.three {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.field {
+			display: grid;
+			gap: .35rem;
+		}
+
+		.field.full {
+			grid-column: 1 / -1;
+		}
+
+		.is-hidden {
+			display: none !important;
+		}
+
+		label {
+			font-size: .82rem;
+			font-weight: 800;
+			color: #3b4149;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			border: 1px solid var(--line-strong);
+			border-radius: var(--radius);
+			background: #fff;
+			color: var(--ink);
+		}
+
+		input,
+		select {
+			min-height: 2.55rem;
+			padding: 0 .7rem;
+		}
+
+		textarea {
+			min-height: 6rem;
+			padding: .65rem .7rem;
+			resize: vertical;
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus {
+			border-color: var(--focus);
+			outline: 2px solid rgba(0, 76, 255, .15);
+		}
+
+		.section-list,
+		.slide-list,
+		.schedule-list {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.section-item {
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			background: #fff;
+			overflow: hidden;
+		}
+
+		.section-title-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: .75rem;
+			padding: .8rem;
+			background: #f6f7f9;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.section-title-row strong {
+			font-size: .95rem;
+		}
+
+		.section-tools,
+		.inline-tools {
+			display: flex;
+			gap: .35rem;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
+
+		.section-content {
+			padding: .9rem;
+		}
+
+		.section-note {
+			margin: 0 0 .8rem;
+			color: var(--muted);
+			font-size: .86rem;
+			line-height: 1.5;
+		}
+
+		.slide-item,
+		.schedule-item {
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			background: var(--surface-alt);
+			overflow: hidden;
+		}
+
+		.slide-head,
+		.schedule-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: .75rem;
+			padding: .65rem .75rem;
+			border-bottom: 1px solid var(--line);
+			background: #fff;
+		}
+
+		.slide-head strong,
+		.schedule-head strong {
+			font-size: .9rem;
+		}
+
+		.slide-body,
+		.schedule-body {
+			padding: .8rem;
+		}
+
+		.type-row {
+			display: grid;
+			grid-template-columns: minmax(10rem, .8fr) minmax(0, 1.2fr);
+			gap: .75rem;
+		}
+
+		.preview-layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(22rem, .75fr);
+			gap: 1rem;
+		}
+
+		.file-list {
+			min-height: 14rem;
+			max-height: 30rem;
+			overflow: auto;
+			margin: 0;
+			padding: 1rem;
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			background: #111;
+			color: #e7eaf0;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+			font-size: .82rem;
+			white-space: pre-wrap;
+		}
+
+		.json-preview {
+			min-height: 20rem;
+			max-height: 42rem;
+			overflow: auto;
+			margin: 0;
+			padding: 1rem;
+			border-radius: var(--radius);
+			background: #111;
+			color: #e7eaf0;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+			font-size: .78rem;
+			white-space: pre-wrap;
+		}
+
+		.hidden-input {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.empty {
+			padding: 1rem;
+			border: 1px dashed var(--line-strong);
+			border-radius: var(--radius);
+			color: var(--muted);
+			background: #fff;
+			text-align: center;
+		}
+
+		@media (max-width: 980px) {
+			.shell {
+				grid-template-columns: 1fr;
+			}
+
+			.sidebar {
+				position: relative;
+				height: auto;
+			}
+
+			.nav {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.preview-layout,
+			.field-grid,
+			.field-grid.three,
+			.type-row {
+				grid-template-columns: 1fr;
+			}
+
+			.topbar {
+				position: relative;
+				align-items: flex-start;
+				flex-direction: column;
+			}
+
+			.actions {
+				justify-content: flex-start;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="shell">
+		<aside class="sidebar">
+			<div class="brand">
+				<h1>월간손솔 원고 접수</h1>
+				<p>섹션과 슬라이드를 구조화해서 저장합니다.</p>
+			</div>
+			<nav class="nav" aria-label="페이지 이동">
+				<a href="#basic">기본 정보</a>
+				<a href="#sections">본문 섹션</a>
+				<a href="#schedule">일정</a>
+				<a href="#preview">저장 데이터</a>
+			</nav>
+		</aside>
+
+		<main class="main">
+			<div class="topbar">
+				<div>
+					<strong id="currentIssue">새 원고</strong>
+					<div class="status" id="saveStatus">대기 중</div>
+				</div>
+				<div class="actions">
+					<button class="text-btn" type="button" id="importBtn">불러오기</button>
+					<button class="text-btn" type="button" id="copyBtn">JSON 복사</button>
+					<button class="text-btn" type="button" id="draftBtn">임시저장</button>
+					<button class="text-btn primary" type="button" id="downloadBtn">저장하기</button>
+					<button class="text-btn danger" type="button" id="resetBtn">초기화</button>
+				</div>
+				<input class="hidden-input" type="file" id="importFile" accept="application/json,.json">
+			</div>
+
+			<form class="form-grid" id="submissionForm">
+				<section class="panel" id="basic">
+					<div class="panel-head">
+						<h2>기본 정보</h2>
+					</div>
+					<div class="panel-body">
+						<div class="field-grid three">
+							<div class="field">
+								<label for="issue">월호 코드</label>
+								<input id="issue" name="issue" placeholder="2606">
+							</div>
+							<div class="field">
+								<label for="issueLabel">월호 표기</label>
+								<input id="issueLabel" name="issueLabel" placeholder="2026년 6월호">
+							</div>
+							<div class="field">
+								<label for="publishUrl">발행 주소</label>
+								<input id="publishUrl" name="publishUrl" placeholder="https://sonsol.kr/2606/">
+							</div>
+							<div class="field full">
+								<label for="nasUrl">자료 폴더 링크</label>
+								<input id="nasUrl" name="nasUrl" placeholder="NAS 공유 링크">
+							</div>
+							<div class="field">
+								<label for="coverImage">표지 파일명</label>
+								<input id="coverImage" name="coverImage" placeholder="0 표지.png">
+							</div>
+							<div class="field">
+								<label for="coverAlt">표지 대체 문구</label>
+								<input id="coverAlt" name="coverAlt" placeholder="월간손솔 6월호">
+							</div>
+							<div class="field full">
+								<label for="coverTitle">표지 문구</label>
+								<textarea id="coverTitle" name="coverTitle" placeholder="줄바꿈 그대로 입력"></textarea>
+							</div>
+							<div class="field full">
+								<label for="coverStoryTitle">커버스토리 제목</label>
+								<input id="coverStoryTitle" name="coverStoryTitle">
+							</div>
+							<div class="field full">
+								<label for="coverStoryDescription">커버스토리 설명</label>
+								<textarea id="coverStoryDescription" name="coverStoryDescription"></textarea>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="panel" id="sections">
+					<div class="panel-head">
+						<h2>본문 섹션</h2>
+						<button class="text-btn primary" type="button" id="addSectionBtn">섹션 추가</button>
+					</div>
+					<div class="panel-body">
+						<div class="section-list" id="sectionList"></div>
+					</div>
+				</section>
+
+				<section class="panel" id="schedule">
+					<div class="panel-head">
+						<h2>일정 돌아보기</h2>
+						<button class="text-btn primary" type="button" id="addScheduleBtn">일정 추가</button>
+					</div>
+					<div class="panel-body">
+						<div class="schedule-list" id="scheduleList"></div>
+					</div>
+				</section>
+
+				<section class="panel" id="preview">
+					<div class="panel-head">
+						<h2>저장 데이터</h2>
+					</div>
+					<div class="panel-body">
+						<div class="preview-layout">
+							<div>
+								<label for="jsonPreview">submission.json</label>
+								<pre class="json-preview" id="jsonPreview"></pre>
+							</div>
+							<div>
+								<label for="fileChecklist">파일 체크리스트</label>
+								<pre class="file-list" id="fileChecklist"></pre>
+							</div>
+						</div>
+					</div>
+				</section>
+			</form>
+		</main>
+	</div>
+
+	<template id="sectionTemplate">
+		<article class="section-item" data-section>
+			<div class="section-title-row">
+				<strong data-section-label>섹션</strong>
+				<div class="section-tools">
+					<button class="icon-btn" type="button" data-action="section-up" title="위로">↑</button>
+					<button class="icon-btn" type="button" data-action="section-down" title="아래로">↓</button>
+					<button class="text-btn" type="button" data-action="add-slide">슬라이드 추가</button>
+					<button class="icon-btn danger" type="button" data-action="remove-section" title="삭제">×</button>
+				</div>
+			</div>
+			<div class="section-content">
+				<p class="section-note">이 영역은 섹션 상단에 고정되는 정보입니다. 실제 슬라이드는 아래 목록에서 1-1부터 시작합니다.</p>
+				<div class="field-grid">
+					<div class="field">
+						<label>프로필 파일명</label>
+						<input data-field="profile" placeholder="profile/분노3.jpeg">
+					</div>
+					<div class="field">
+						<label>작은 날짜/설명</label>
+						<input data-field="eyebrow" placeholder="6.3 현장">
+					</div>
+					<div class="field full">
+						<label>섹션 상단 제목</label>
+						<input data-field="title">
+					</div>
+					<div class="field full">
+						<label>섹션 설명</label>
+						<textarea data-field="description" placeholder="내용이 있을 때만 넣어주세요"></textarea>
+					</div>
+				</div>
+				<div class="slide-list" data-slide-list></div>
+			</div>
+		</article>
+	</template>
+
+	<template id="slideTemplate">
+		<article class="slide-item" data-slide>
+			<div class="slide-head">
+				<strong data-slide-label>슬라이드</strong>
+				<div class="inline-tools">
+					<button class="icon-btn" type="button" data-action="slide-up" title="위로">↑</button>
+					<button class="icon-btn" type="button" data-action="slide-down" title="아래로">↓</button>
+					<button class="icon-btn danger" type="button" data-action="remove-slide" title="삭제">×</button>
+				</div>
+			</div>
+			<div class="slide-body">
+				<div class="field-grid">
+					<div class="type-row field full">
+						<div class="field">
+							<label>레이아웃</label>
+							<select data-field="layout">
+								<option value="general">일반형</option>
+								<option value="cover">커버형</option>
+							</select>
+						</div>
+						<div class="field">
+							<label>세부 타입</label>
+							<select data-field="type">
+								<option value="standard">사진/영상 + 제목/본문</option>
+								<option value="dialog">대화형 텍스트</option>
+								<option value="link">링크/PDF 버튼</option>
+							</select>
+						</div>
+						<div class="field" data-visible-for="standard,link">
+							<label>파일명</label>
+							<input data-field="file" placeholder="1-1.mp4 또는 1-2.jpg">
+						</div>
+					</div>
+					<div class="field full" data-visible-for="standard,link">
+						<label>제목</label>
+						<input data-field="title">
+					</div>
+					<div class="field full" data-visible-for="standard,dialog,link">
+						<label>본문</label>
+						<textarea data-field="body"></textarea>
+					</div>
+					<div class="field" data-visible-for="standard,link">
+						<label>캡션</label>
+						<input data-field="caption">
+					</div>
+					<div class="field" data-visible-for="link">
+						<label>링크 URL</label>
+						<input data-field="linkUrl">
+					</div>
+					<div class="field" data-visible-for="link">
+						<label>버튼 문구</label>
+						<input data-field="linkLabel">
+					</div>
+					<div class="field" data-visible-for="standard,dialog,link">
+						<label>작업 메모</label>
+						<input data-field="note">
+					</div>
+				</div>
+			</div>
+		</article>
+	</template>
+
+	<template id="scheduleTemplate">
+		<article class="schedule-item" data-schedule>
+			<div class="schedule-head">
+				<strong data-schedule-label>일정</strong>
+				<div class="inline-tools">
+					<button class="icon-btn" type="button" data-action="schedule-up" title="위로">↑</button>
+					<button class="icon-btn" type="button" data-action="schedule-down" title="아래로">↓</button>
+					<button class="icon-btn danger" type="button" data-action="remove-schedule" title="삭제">×</button>
+				</div>
+			</div>
+			<div class="schedule-body">
+				<div class="field-grid">
+					<div class="field">
+						<label>날짜</label>
+						<input data-field="date" placeholder="6.1">
+					</div>
+					<div class="field full">
+						<label>일정 내용</label>
+						<textarea data-field="items" placeholder="한 줄에 하나씩 입력"></textarea>
+					</div>
+				</div>
+			</div>
+		</article>
+	</template>
+
+	<script>
+		const STORAGE_KEY = "monthlySonsolSubmission:v1";
+
+		const defaultData = {
+			schemaVersion: 1,
+			issue: "",
+			issueLabel: "",
+			publishUrl: "",
+			nasUrl: "",
+			cover: {
+				image: "0 표지.png",
+				alt: "",
+				title: "",
+				storyTitle: "",
+				storyDescription: ""
+			},
+			sections: [],
+			schedule: []
+		};
+
+		const form = document.getElementById("submissionForm");
+		const sectionList = document.getElementById("sectionList");
+		const scheduleList = document.getElementById("scheduleList");
+		const jsonPreview = document.getElementById("jsonPreview");
+		const fileChecklist = document.getElementById("fileChecklist");
+		const saveStatus = document.getElementById("saveStatus");
+		const currentIssue = document.getElementById("currentIssue");
+		const importFile = document.getElementById("importFile");
+
+		const sectionTemplate = document.getElementById("sectionTemplate");
+		const slideTemplate = document.getElementById("slideTemplate");
+		const scheduleTemplate = document.getElementById("scheduleTemplate");
+
+		let saveTimer = null;
+
+		function cloneData(data) {
+			return JSON.parse(JSON.stringify(data));
+		}
+
+		function loadData() {
+			const saved = localStorage.getItem(STORAGE_KEY);
+			if (!saved) return cloneData(defaultData);
+			try {
+				return normalizeData(JSON.parse(saved));
+			} catch {
+				return cloneData(defaultData);
+			}
+		}
+
+		function normalizeData(data) {
+			const normalized = cloneData(defaultData);
+			Object.assign(normalized, data || {});
+			normalized.cover = Object.assign({}, defaultData.cover, data?.cover || {});
+			normalized.sections = Array.isArray(data?.sections) ? data.sections.map(section => ({
+				profile: section.profile || "",
+				eyebrow: section.eyebrow || "",
+				title: section.title || "",
+				description: section.description || "",
+				slides: Array.isArray(section.slides) ? section.slides.map(normalizeSlide) : []
+			})) : [];
+			normalized.schedule = Array.isArray(data?.schedule) ? data.schedule.map(item => ({
+				date: item.date || "",
+				items: Array.isArray(item.items) ? item.items : splitLines(item.items || "")
+			})) : [];
+			return normalized;
+		}
+
+		function normalizeSlide(slide = {}) {
+			const oldType = slide.type || "standard";
+			const layout = slide.layout || (oldType === "cover" ? "cover" : "general");
+			const type = oldType === "dialog" || oldType === "link" ? oldType : "standard";
+			return {
+				layout,
+				type,
+				file: slide.file || "",
+				title: slide.title || "",
+				body: slide.body || "",
+				caption: slide.caption || "",
+				linkUrl: slide.linkUrl || "",
+				linkLabel: slide.linkLabel || "",
+				note: slide.note || ""
+			};
+		}
+
+		function splitLines(value) {
+			return String(value || "")
+				.split(/\r?\n/)
+				.map(line => line.trim())
+				.filter(Boolean);
+		}
+
+		function setValue(selector, value) {
+			const element = document.querySelector(selector);
+			if (element) element.value = value || "";
+		}
+
+		function fillGlobalFields(data) {
+			setValue("#issue", data.issue);
+			setValue("#issueLabel", data.issueLabel);
+			setValue("#publishUrl", data.publishUrl);
+			setValue("#nasUrl", data.nasUrl);
+			setValue("#coverImage", data.cover.image);
+			setValue("#coverAlt", data.cover.alt);
+			setValue("#coverTitle", data.cover.title);
+			setValue("#coverStoryTitle", data.cover.storyTitle);
+			setValue("#coverStoryDescription", data.cover.storyDescription);
+		}
+
+		function renderSection(section = {}) {
+			const fragment = sectionTemplate.content.cloneNode(true);
+			const element = fragment.querySelector("[data-section]");
+			element.querySelector('[data-field="profile"]').value = section.profile || "";
+			element.querySelector('[data-field="eyebrow"]').value = section.eyebrow || "";
+			element.querySelector('[data-field="title"]').value = section.title || "";
+			element.querySelector('[data-field="description"]').value = section.description || "";
+			const slides = element.querySelector("[data-slide-list]");
+			(section.slides || []).forEach(slide => slides.appendChild(renderSlide(slide)));
+			return element;
+		}
+
+		function renderSlide(slide = {}) {
+			const fragment = slideTemplate.content.cloneNode(true);
+			const element = fragment.querySelector("[data-slide]");
+			Object.entries({
+				layout: slide.layout || "general",
+				type: slide.type || "standard",
+				file: slide.file || "",
+				title: slide.title || "",
+				body: slide.body || "",
+				caption: slide.caption || "",
+				linkUrl: slide.linkUrl || "",
+				linkLabel: slide.linkLabel || "",
+				note: slide.note || ""
+			}).forEach(([key, value]) => {
+				const field = element.querySelector(`[data-field="${key}"]`);
+				if (field) field.value = value;
+			});
+			updateSlideFields(element);
+			return element;
+		}
+
+		function isSlideFieldVisible(slideEl, fieldName) {
+			const field = slideEl.querySelector(`[data-field="${fieldName}"]`);
+			const container = field?.closest("[data-visible-for]");
+			return !container || !container.classList.contains("is-hidden");
+		}
+
+		function getSlideFieldValue(slideEl, fieldName) {
+			if (!isSlideFieldVisible(slideEl, fieldName)) return "";
+			return slideEl.querySelector(`[data-field="${fieldName}"]`).value.trim();
+		}
+
+		function updateSlideFields(slideEl) {
+			const type = slideEl.querySelector('[data-field="type"]').value;
+			slideEl.querySelectorAll("[data-visible-for]").forEach(element => {
+				const types = element.dataset.visibleFor.split(",");
+				element.classList.toggle("is-hidden", !types.includes(type));
+			});
+		}
+
+		function renderSchedule(item = {}) {
+			const fragment = scheduleTemplate.content.cloneNode(true);
+			const element = fragment.querySelector("[data-schedule]");
+			element.querySelector('[data-field="date"]').value = item.date || "";
+			element.querySelector('[data-field="items"]').value = (item.items || []).join("\n");
+			return element;
+		}
+
+		function renderData(data) {
+			fillGlobalFields(data);
+			sectionList.innerHTML = "";
+			scheduleList.innerHTML = "";
+			data.sections.forEach(section => sectionList.appendChild(renderSection(section)));
+			data.schedule.forEach(item => scheduleList.appendChild(renderSchedule(item)));
+			updateLabels();
+			updatePreview();
+		}
+
+		function collectData() {
+			const data = cloneData(defaultData);
+			data.issue = document.getElementById("issue").value.trim();
+			data.issueLabel = document.getElementById("issueLabel").value.trim();
+			data.publishUrl = document.getElementById("publishUrl").value.trim();
+			data.nasUrl = document.getElementById("nasUrl").value.trim();
+			data.cover = {
+				image: document.getElementById("coverImage").value.trim(),
+				alt: document.getElementById("coverAlt").value.trim(),
+				title: document.getElementById("coverTitle").value.trim(),
+				storyTitle: document.getElementById("coverStoryTitle").value.trim(),
+				storyDescription: document.getElementById("coverStoryDescription").value.trim()
+			};
+			data.sections = [...sectionList.querySelectorAll("[data-section]")].map(sectionEl => ({
+				profile: sectionEl.querySelector('[data-field="profile"]').value.trim(),
+				eyebrow: sectionEl.querySelector('[data-field="eyebrow"]').value.trim(),
+				title: sectionEl.querySelector('[data-field="title"]').value.trim(),
+				description: sectionEl.querySelector('[data-field="description"]').value.trim(),
+				slides: [...sectionEl.querySelectorAll("[data-slide]")].map(slideEl => ({
+					layout: slideEl.querySelector('[data-field="layout"]').value,
+					type: slideEl.querySelector('[data-field="type"]').value,
+					file: getSlideFieldValue(slideEl, "file"),
+					title: getSlideFieldValue(slideEl, "title"),
+					body: getSlideFieldValue(slideEl, "body"),
+					caption: getSlideFieldValue(slideEl, "caption"),
+					linkUrl: getSlideFieldValue(slideEl, "linkUrl"),
+					linkLabel: getSlideFieldValue(slideEl, "linkLabel"),
+					note: getSlideFieldValue(slideEl, "note")
+				}))
+			}));
+			data.schedule = [...scheduleList.querySelectorAll("[data-schedule]")].map(itemEl => ({
+				date: itemEl.querySelector('[data-field="date"]').value.trim(),
+				items: splitLines(itemEl.querySelector('[data-field="items"]').value)
+			}));
+			return data;
+		}
+
+		function buildChecklist(data) {
+			const files = [];
+			if (data.cover.image) files.push(["표지", data.cover.image]);
+			data.sections.forEach((section, sectionIndex) => {
+				if (section.profile) files.push([`섹션 ${sectionIndex + 1} 프로필`, section.profile]);
+				section.slides.forEach((slide, slideIndex) => {
+					if (slide.file) files.push([`섹션 ${sectionIndex + 1}-${slideIndex + 1}`, slide.file]);
+				});
+			});
+			if (!files.length) return "파일 없음";
+			return files.map(([label, file]) => `${label}: ${file}`).join("\n");
+		}
+
+		function updateLabels() {
+			[...sectionList.querySelectorAll("[data-section]")].forEach((sectionEl, sectionIndex) => {
+				const title = sectionEl.querySelector('[data-field="title"]').value.trim();
+				sectionEl.querySelector("[data-section-label]").textContent = `섹션 ${sectionIndex + 1}${title ? ` · ${title}` : ""}`;
+				[...sectionEl.querySelectorAll("[data-slide]")].forEach((slideEl, slideIndex) => {
+					updateSlideFields(slideEl);
+					const layout = slideEl.querySelector('[data-field="layout"]').selectedOptions[0].textContent;
+					const type = slideEl.querySelector('[data-field="type"]').selectedOptions[0].textContent;
+					slideEl.querySelector("[data-slide-label]").textContent = `${sectionIndex + 1}-${slideIndex + 1} · ${layout} · ${type}`;
+				});
+			});
+			[...scheduleList.querySelectorAll("[data-schedule]")].forEach((itemEl, index) => {
+				const date = itemEl.querySelector('[data-field="date"]').value.trim();
+				itemEl.querySelector("[data-schedule-label]").textContent = `일정 ${index + 1}${date ? ` · ${date}` : ""}`;
+			});
+		}
+
+		function updatePreview() {
+			const data = collectData();
+			currentIssue.textContent = data.issueLabel || data.issue || "새 원고";
+			jsonPreview.textContent = JSON.stringify(data, null, 2);
+			fileChecklist.textContent = buildChecklist(data);
+			window.clearTimeout(saveTimer);
+			saveTimer = window.setTimeout(() => {
+				saveDraft("자동 임시저장됨");
+			}, 250);
+		}
+
+		function saveDraft(label = "임시저장됨") {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(collectData()));
+			saveStatus.textContent = `${label} · ${new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" })}`;
+		}
+
+		function moveElement(element, direction) {
+			if (!element) return;
+			if (direction < 0 && element.previousElementSibling) {
+				element.parentElement.insertBefore(element, element.previousElementSibling);
+			}
+			if (direction > 0 && element.nextElementSibling) {
+				element.parentElement.insertBefore(element.nextElementSibling, element);
+			}
+			updateLabels();
+			updatePreview();
+		}
+
+		function downloadJson() {
+			const data = collectData();
+			const issue = data.issue || "draft";
+			const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json;charset=utf-8" });
+			const link = document.createElement("a");
+			link.href = URL.createObjectURL(blob);
+			link.download = `monthly-sonsol-${issue}.json`;
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+			URL.revokeObjectURL(link.href);
+			saveStatus.textContent = "파일 저장됨";
+		}
+
+		function addSection() {
+			sectionList.appendChild(renderSection({ slides: [defaultSlide()] }));
+			updateLabels();
+			updatePreview();
+		}
+
+		function defaultSlide() {
+			return {
+				layout: "general",
+				type: "standard",
+				file: "",
+				title: "",
+				body: "",
+				caption: "",
+				linkUrl: "",
+				linkLabel: "",
+				note: ""
+			};
+		}
+
+		function addSchedule() {
+			scheduleList.appendChild(renderSchedule({ date: "", items: [] }));
+			updateLabels();
+			updatePreview();
+		}
+
+		document.getElementById("addSectionBtn").addEventListener("click", addSection);
+		document.getElementById("addScheduleBtn").addEventListener("click", addSchedule);
+		document.getElementById("draftBtn").addEventListener("click", () => saveDraft());
+		document.getElementById("downloadBtn").addEventListener("click", downloadJson);
+
+		document.getElementById("copyBtn").addEventListener("click", async () => {
+			await navigator.clipboard.writeText(JSON.stringify(collectData(), null, 2));
+			saveStatus.textContent = "JSON 복사됨";
+		});
+
+		document.getElementById("importBtn").addEventListener("click", () => importFile.click());
+		importFile.addEventListener("change", async () => {
+			const file = importFile.files[0];
+			if (!file) return;
+			const text = await file.text();
+			renderData(normalizeData(JSON.parse(text)));
+			saveStatus.textContent = "파일 불러옴";
+			importFile.value = "";
+		});
+
+		document.getElementById("resetBtn").addEventListener("click", () => {
+			if (!confirm("입력 내용을 모두 지울까요?")) return;
+			localStorage.removeItem(STORAGE_KEY);
+			renderData(cloneData(defaultData));
+			saveStatus.textContent = "초기화됨";
+		});
+
+		form.addEventListener("input", () => {
+			updateLabels();
+			updatePreview();
+		});
+
+		form.addEventListener("change", () => {
+			updateLabels();
+			updatePreview();
+		});
+
+		form.addEventListener("click", event => {
+			const button = event.target.closest("[data-action]");
+			if (!button) return;
+			const action = button.dataset.action;
+			const section = button.closest("[data-section]");
+			const slide = button.closest("[data-slide]");
+			const schedule = button.closest("[data-schedule]");
+
+			if (action === "add-slide") section.querySelector("[data-slide-list]").appendChild(renderSlide(defaultSlide()));
+			if (action === "remove-section") section.remove();
+			if (action === "section-up") moveElement(section, -1);
+			if (action === "section-down") moveElement(section, 1);
+			if (action === "remove-slide") slide.remove();
+			if (action === "slide-up") moveElement(slide, -1);
+			if (action === "slide-down") moveElement(slide, 1);
+			if (action === "remove-schedule") schedule.remove();
+			if (action === "schedule-up") moveElement(schedule, -1);
+			if (action === "schedule-down") moveElement(schedule, 1);
+
+			updateLabels();
+			updatePreview();
+		});
+
+		renderData(loadData());
+		if (!sectionList.children.length) addSection();
+		if (!scheduleList.children.length) addSchedule();
+	</script>
+</body>
+
+</html>
