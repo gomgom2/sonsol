@@ -270,15 +270,16 @@ table {
 .content-stitle h3 {
   font-size: .9rem;
   font-weight: 800;
+  line-height: 1.3;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   letter-spacing: -0.03rem;
 }
 
 .content-stitle h3 span {
   font-size: 0.8rem;
   font-weight: 500;
-  margin-left: 0.5rem;
   color: #6a717a;
   letter-spacing: 0;
 }
@@ -303,6 +304,19 @@ table {
   position: relative;
   color: var(--basic-color);
 }
+
+.slide-item-text h3 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 700;
+  font-family: var(--font-prese);
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+  margin-bottom: .5rem;
+  line-height: 1.2;
+  word-break: keep-all;
+}
+
+.slide-item-text h3.middle-text {}
 
 .slide-item-text h4 {
   font-size: clamp(1.2rem, 5vw, 1.5rem);
@@ -421,6 +435,14 @@ table {
 
 .slide-cover figure {
   width: 100%;
+}
+
+.slide-cover.opaque {
+  background-color: #000;
+}
+
+.slide-cover.opaque figure {
+  opacity: 0.5;
 }
 
 .slide-cover .slide-item-text {
