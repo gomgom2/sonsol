@@ -574,6 +574,18 @@
 				<p class="section-note">이 영역은 섹션 상단에 고정되는 정보입니다. 실제 슬라이드는 아래 목록에서 1-1부터 시작합니다.</p>
 				<div class="field-grid">
 					<div class="field">
+						<label>섹션 배경색</label>
+						<select data-field="color">
+							<option value="">선택 안 함 (첫 콘텐츠/기본)</option>
+							<option value="red">빨강 · pride-red</option>
+							<option value="orange">주황 · pride-orange</option>
+							<option value="yellow">노랑 · pride-yellow</option>
+							<option value="green">초록 · pride-green</option>
+							<option value="blue">파랑 · pride-blue</option>
+							<option value="purple">보라 · pride-purple</option>
+						</select>
+					</div>
+					<div class="field">
 						<label>프로필 파일명</label>
 						<input data-field="profile" placeholder="profile/분노3.jpeg">
 					</div>
@@ -628,11 +640,22 @@
 							<input data-field="file" placeholder="1-1.mp4 또는 1-2.jpg">
 						</div>
 					</div>
+					<div class="field full" data-visible-for="dialog">
+						<label>대화 내용</label>
+						<textarea data-field="dialog" placeholder="한 줄에 한 명씩 — 발화자: 대사"></textarea>
+					</div>
 					<div class="field full" data-visible-for="standard,link">
 						<label>제목</label>
 						<input data-field="title">
 					</div>
-					<div class="field full" data-visible-for="standard,dialog,link">
+					<div class="field" data-visible-for="standard,link">
+						<label>제목 태그</label>
+						<select data-field="titleTag">
+							<option value="h3">h3 큰 제목</option>
+							<option value="h4">h4 일반 제목</option>
+						</select>
+					</div>
+					<div class="field full" data-visible-for="standard,link">
 						<label>본문</label>
 						<textarea data-field="body"></textarea>
 					</div>
@@ -736,6 +759,7 @@
 			Object.assign(normalized, data || {});
 			normalized.cover = Object.assign({}, defaultData.cover, data?.cover || {});
 			normalized.sections = Array.isArray(data?.sections) ? data.sections.map(section => ({
+				color: section.color || "",
 				profile: section.profile || "",
 				eyebrow: section.eyebrow || "",
 				title: section.title || "",
@@ -749,16 +773,20 @@
 			return normalized;
 		}
 
-		function normalizeSlide(slide = {}) {
+		function normalizeSlide(slide = {}, slideIndex = 0) {
 			const oldType = slide.type || "standard";
 			const layout = slide.layout || (oldType === "cover" ? "cover" : "general");
 			const type = oldType === "dialog" || oldType === "link" ? oldType : "standard";
+			const defaultTitleTag = slideIndex === 0 ? "h3" : "h4";
+			const dialog = slide.dialog ?? (type === "dialog" ? slide.body : "");
 			return {
 				layout,
 				type,
 				file: slide.file || "",
 				title: slide.title || "",
+				titleTag: slide.titleTag === "h3" || slide.titleTag === "h4" ? slide.titleTag : defaultTitleTag,
 				body: slide.body || "",
+				dialog: normalizeDialog(dialog),
 				caption: slide.caption || "",
 				linkUrl: slide.linkUrl || "",
 				linkLabel: slide.linkLabel || "",
@@ -771,6 +799,29 @@
 				.split(/\r?\n/)
 				.map(line => line.trim())
 				.filter(Boolean);
+		}
+
+		function parseDialog(value) {
+			return splitLines(value).map(line => {
+				const idx = line.search(/[:：]/);
+				if (idx === -1) return { speaker: "", text: line };
+				return { speaker: line.slice(0, idx).trim(), text: line.slice(idx + 1).trim() };
+			});
+		}
+
+		function normalizeDialog(value) {
+			if (Array.isArray(value)) {
+				return value
+					.map(line => ({ speaker: (line?.speaker || "").trim(), text: (line?.text || "").trim() }))
+					.filter(line => line.speaker || line.text);
+			}
+			return parseDialog(value || "");
+		}
+
+		function serializeDialog(value) {
+			return normalizeDialog(value)
+				.map(line => (line.speaker ? `${line.speaker}: ${line.text}` : line.text))
+				.join("\n");
 		}
 
 		function setValue(selector, value) {
@@ -793,6 +844,7 @@
 		function renderSection(section = {}) {
 			const fragment = sectionTemplate.content.cloneNode(true);
 			const element = fragment.querySelector("[data-section]");
+			element.querySelector('[data-field="color"]').value = section.color || "";
 			element.querySelector('[data-field="profile"]').value = section.profile || "";
 			element.querySelector('[data-field="eyebrow"]').value = section.eyebrow || "";
 			element.querySelector('[data-field="title"]').value = section.title || "";
@@ -810,7 +862,9 @@
 				type: slide.type || "standard",
 				file: slide.file || "",
 				title: slide.title || "",
+				titleTag: slide.titleTag === "h4" ? "h4" : "h3",
 				body: slide.body || "",
+				dialog: serializeDialog(slide.dialog),
 				caption: slide.caption || "",
 				linkUrl: slide.linkUrl || "",
 				linkLabel: slide.linkLabel || "",
@@ -874,6 +928,7 @@
 				storyDescription: document.getElementById("coverStoryDescription").value.trim()
 			};
 			data.sections = [...sectionList.querySelectorAll("[data-section]")].map(sectionEl => ({
+				color: sectionEl.querySelector('[data-field="color"]').value,
 				profile: sectionEl.querySelector('[data-field="profile"]').value.trim(),
 				eyebrow: sectionEl.querySelector('[data-field="eyebrow"]').value.trim(),
 				title: sectionEl.querySelector('[data-field="title"]').value.trim(),
@@ -883,7 +938,9 @@
 					type: slideEl.querySelector('[data-field="type"]').value,
 					file: getSlideFieldValue(slideEl, "file"),
 					title: getSlideFieldValue(slideEl, "title"),
+					titleTag: getSlideFieldValue(slideEl, "titleTag") || "h3",
 					body: getSlideFieldValue(slideEl, "body"),
+					dialog: parseDialog(getSlideFieldValue(slideEl, "dialog")),
 					caption: getSlideFieldValue(slideEl, "caption"),
 					linkUrl: getSlideFieldValue(slideEl, "linkUrl"),
 					linkLabel: getSlideFieldValue(slideEl, "linkLabel"),
@@ -970,18 +1027,20 @@
 		}
 
 		function addSection() {
-			sectionList.appendChild(renderSection({ slides: [defaultSlide()] }));
+			sectionList.appendChild(renderSection({ slides: [defaultSlide("h3")] }));
 			updateLabels();
 			updatePreview();
 		}
 
-		function defaultSlide() {
+		function defaultSlide(titleTag = "h4") {
 			return {
 				layout: "general",
 				type: "standard",
 				file: "",
 				title: "",
+				titleTag,
 				body: "",
+				dialog: [],
 				caption: "",
 				linkUrl: "",
 				linkLabel: "",
@@ -1040,7 +1099,7 @@
 			const slide = button.closest("[data-slide]");
 			const schedule = button.closest("[data-schedule]");
 
-			if (action === "add-slide") section.querySelector("[data-slide-list]").appendChild(renderSlide(defaultSlide()));
+			if (action === "add-slide") section.querySelector("[data-slide-list]").appendChild(renderSlide(defaultSlide("h4")));
 			if (action === "remove-section") section.remove();
 			if (action === "section-up") moveElement(section, -1);
 			if (action === "section-down") moveElement(section, 1);
