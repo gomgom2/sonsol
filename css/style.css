@@ -210,6 +210,74 @@ table {
   margin-top: 1.5rem;
 }
 
+.content.pride-red {
+  background-color: #e50000;
+  color: #fff;
+}
+
+.content-7 .content-7-body {
+  background-color: #94e0c2;
+  color: var(--basic-color);
+  padding: 2rem 0;
+}
+
+.content-7 .slide-box {
+  margin-top: 0;
+}
+
+.content-7-body > .slide-box > .content-stitle {
+  padding: 0 2rem 2rem;
+}
+
+.content-7-body > .slide-box > .content-stitle h3 {
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+  font-family: var(--font-prese);
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: keep-all;
+}
+
+.content-7 .link-box {
+  margin-top: 1rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.content-7 .link-item {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.content-7 .link-item a {
+  color: #000;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.content-7 .link-item h4 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 700;
+  font-family: var(--font-prese);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+  word-break: keep-all;
+}
+
+.content-7 .link-item p {
+  font-size: clamp(.9rem, 2vw, 1rem);
+  line-height: 1.3;
+}
+
+.content-7 .link-image {
+  min-height: 8rem;
+}
+
 .content.black {
   background-color: #000;
   color: #fff;
@@ -447,7 +515,9 @@ table {
   height: 2.5rem;
   padding: 0.4rem;
   background-color: rgba(0, 0, 0, 0.4);
+  border: 0;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .mute-btn img {
@@ -477,6 +547,7 @@ table {
 .full-item figure {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .full-item figure img,
@@ -502,6 +573,26 @@ table {
       rgba(0, 0, 0, 0.78) 0%,
       rgba(0, 0, 0, 0.5) 45%,
       rgba(0, 0, 0, 0) 100%);
+}
+
+.content-5 .slide-cover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 65%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.92) 0%,
+      rgba(0, 0, 0, 0.65) 45%,
+      rgba(0, 0, 0, 0) 100%);
+}
+
+.content-5 .slide-item-text h5.go-btn a {
+  background-color: #fff;
+  color: #000;
 }
 
 .content-2 .slide-cover:first-child .slide-item-text {
