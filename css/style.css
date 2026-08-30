@@ -225,11 +225,11 @@ table {
   margin-top: 0;
 }
 
-.content-7-body > .slide-box > .content-stitle {
+.content-7-body>.slide-box>.content-stitle {
   padding: 0 2rem 2rem;
 }
 
-.content-7-body > .slide-box > .content-stitle h3 {
+.content-7-body>.slide-box>.content-stitle h3 {
   font-size: clamp(2.5rem, 3.5vw, 4rem);
   font-family: var(--font-prese);
   font-weight: 700;
@@ -425,7 +425,6 @@ table {
   word-break: keep-all;
 }
 
-.slide-item-text h3.middle-text {}
 
 .slide-item-text h4 {
   font-size: clamp(1.2rem, 5vw, 1.5rem);
@@ -442,6 +441,7 @@ table {
   margin-bottom: .5rem;
   line-height: 1.3;
   word-break: keep-all;
+  color: #fff;
 }
 
 .slide-item-text h5.go-btn {
