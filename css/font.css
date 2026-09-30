@@ -215,3 +215,17 @@
     font-weight: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'PartialSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GimpoPeaceFoundation';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/GimpoBatang00.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
