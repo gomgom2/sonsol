@@ -9,8 +9,8 @@
 	<meta property="og:url" content="https://sonsol.kr/2610/" />
 	<meta property="og:image" content="contents/1-1.jpg" />
 	<title>월간손솔 10월호</title>
-	<link rel="stylesheet" href="css/style.css?v=20261031" />
-	<link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="css/style.css?v=20261031b" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper@12.0.2/swiper-bundle.min.css" />
 	<style>
 		@font-face {
 			font-family: 'NohHaeChan';
@@ -292,30 +292,62 @@
 		</a>
 	</div>
 
-	<script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+	<script src="https://unpkg.com/swiper@12.0.2/swiper-bundle.min.js"></script>
 	<script>
-		document.querySelectorAll('.keyword-row').forEach((row) => {
-			const track = document.createElement('div');
-			track.className = 'keyword-track';
-			while (row.firstElementChild) track.appendChild(row.firstElementChild);
-			const originalCards = Array.from(track.children);
-			originalCards.forEach((card) => {
-				const clone = card.cloneNode(true);
-				clone.setAttribute('aria-hidden', 'true');
-				clone.setAttribute('tabindex', '-1');
-				track.appendChild(clone);
-			});
-			row.appendChild(track);
+		document.querySelectorAll('.keyword-row').forEach((row, index) => {
+			row.classList.add('swiper');
+			const wrapper = document.createElement('div');
+			wrapper.className = 'swiper-wrapper';
+			// 원본 카드가 적어도(행별 5~6개) Swiper 11 loop이 꺼지므로, 복제해 슬라이드 수를 늘림
+			const originals = Array.from(row.children);
+			const REPEAT = 3;
+			for (let i = 0; i < REPEAT; i++) {
+				originals.forEach((card) => {
+					const slide = i === 0 ? card : card.cloneNode(true);
+					slide.classList.add('swiper-slide');
+					wrapper.appendChild(slide);
+				});
+			}
+			row.appendChild(wrapper);
 
-			let resumeTimer;
-			row.addEventListener('touchstart', () => {
-				clearTimeout(resumeTimer);
-				row.classList.add('is-paused');
-			}, { passive: true });
-			row.addEventListener('touchend', () => {
-				clearTimeout(resumeTimer);
-				resumeTimer = setTimeout(() => row.classList.remove('is-paused'), 1500);
-			}, { passive: true });
+			new Swiper(row, {
+				slidesPerView: 'auto',
+				spaceBetween: 16,
+				loop: true,
+				loopAdditionalSlides: 5,
+				speed: 6000,
+				freeMode: {
+					enabled: true,
+					sticky: false,
+					// 스와이프 후 관성으로 쭉 밀려가는 플링 (값이 낮을수록 약하게)
+					momentum: true,
+					momentumRatio: 0.6,
+					momentumVelocityRatio: 0.6
+				},
+				autoplay: {
+					delay: 0,
+					// 손가락이 닿으면 자동흐름을 멈춰 관성과 충돌하지 않게 함
+					disableOnInteraction: true,
+					waitForTransition: false,
+					reverseDirection: index === 0
+				},
+				grabCursor: true,
+				on: {
+					// 관성(모멘텀) 글라이드가 끝난 뒤 자동 흐름을 다시 이어지게 함
+					touchEnd() {
+						const sw = this;
+						let resumed = false;
+						const resume = () => {
+							if (resumed) return;
+							resumed = true;
+							sw.autoplay.start();
+						};
+						sw.once('transitionEnd', resume);
+						// 관성이 거의 없는 짧은 탭 대비 폴백
+						setTimeout(resume, 1500);
+					}
+				}
+			});
 		});
 
 		new Swiper('.people-slider', {

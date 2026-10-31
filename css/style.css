@@ -229,6 +229,25 @@ table {
   font-family: var(--font-prese);
 }
 
+.coverstory-item:nth-child(2),
+.coverstory-item:nth-child(4) {
+  position: relative;
+  padding-top: 2rem;
+  margin-top: .5rem;
+}
+
+.coverstory-item:nth-child(2)::before,
+.coverstory-item:nth-child(4)::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20%;
+  height: 1px;
+  content: '';
+  background: rgba(255, 255, 255, .55);
+  transform: translateX(-50%);
+}
+
 .coverstory-item h2 {
   font-family: GimpoPeaceFoundation;
   font-size: clamp(1.85rem, 5.5vw, 2.75rem);
@@ -304,44 +323,30 @@ table {
 }
 
 .keyword-row {
-  display: flex;
-  gap: 1rem;
   width: 100%;
   padding: 0 1rem .25rem;
   overflow: hidden;
+  cursor: grab;
   scrollbar-width: none;
+  touch-action: pan-x;
 }
 
-.keyword-track {
+.keyword-row .swiper-wrapper {
   display: flex;
-  gap: 1rem;
-  width: max-content;
-  animation: keyword-marquee 38s linear infinite;
-  will-change: transform;
-}
-
-.keyword-row:nth-child(2) .keyword-track {
-  animation-direction: reverse;
-  animation-duration: 42s;
-}
-
-.keyword-row:nth-child(3) .keyword-track {
-  animation-duration: 35s;
+  align-items: stretch;
+  /* 연속 마퀴가 매 칸 감속 없이 일정 속도로 흐르도록 (Swiper 번들 CSS의 ease-out을 덮어씀) */
+  transition-timing-function: linear !important;
 }
 
 .keyword-row::-webkit-scrollbar {
   display: none;
 }
 
-.keyword-row:hover .keyword-track,
-.keyword-row.is-paused .keyword-track {
-  animation-play-state: paused;
-}
-
-.keyword-card {
+/* .swiper-slide(스와이퍼 번들 CSS)보다 명시도를 높여 레이아웃이 덮이지 않게 함 */
+.keyword-row .keyword-card {
   display: flex;
   flex: 0 0 18rem;
-  align-items: stretch;
+  align-items: center;
   height: 7rem;
   overflow: hidden;
   border-radius: 1.4rem;
@@ -396,11 +401,6 @@ table {
 .keyword-card:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 3px;
-}
-
-@keyframes keyword-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
 }
 
 .people-section {
