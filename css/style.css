@@ -328,14 +328,20 @@ table {
   overflow: hidden;
   cursor: grab;
   scrollbar-width: none;
-  touch-action: pan-x;
+  /* 가로 제스처는 JS 마퀴가, 세로 스와이프는 페이지 스크롤이 처리 */
+  touch-action: pan-y;
 }
 
-.keyword-row .swiper-wrapper {
+.keyword-row.is-dragging {
+  cursor: grabbing;
+}
+
+.keyword-track {
   display: flex;
   align-items: stretch;
-  /* 연속 마퀴가 매 칸 감속 없이 일정 속도로 흐르도록 (Swiper 번들 CSS의 ease-out을 덮어씀) */
-  transition-timing-function: linear !important;
+  gap: 1rem;
+  width: max-content;
+  will-change: transform;
 }
 
 .keyword-row::-webkit-scrollbar {
@@ -345,7 +351,7 @@ table {
 /* .swiper-slide(스와이퍼 번들 CSS)보다 명시도를 높여 레이아웃이 덮이지 않게 함 */
 .keyword-row .keyword-card {
   display: flex;
-  flex: 0 0 18rem;
+  flex: 0 0 22rem;
   align-items: center;
   height: 7rem;
   overflow: hidden;
